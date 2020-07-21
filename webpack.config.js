@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const loader = require('sass-loader');
-const VueloaderPlugin = require('vue-loader/lib/plugin');
+
 
 module.exports = {
   mode: 'development',
@@ -21,15 +21,6 @@ module.exports = {
         use: [
           {
             loader: 'ts-loader',
-          }
-        ]
-      },
-      {
-        test: /\.vue/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: 'vue-loader',
           }
         ]
       },
@@ -72,7 +63,8 @@ module.exports = {
             loader: 'file-loader',
             options: {
               esModule: false,
-              name: 'images/[name].[ext]'
+              name: 'images/[name].[ext]',
+              publicPath: '/',
             },
           },
           {
@@ -103,7 +95,6 @@ module.exports = {
     ],
   },
 plugins: [
-  new VueloaderPlugin(),
   new MiniCssExtractPlugin({
     filename: './stylesheet/main.css',
   }),
